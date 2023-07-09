@@ -3,6 +3,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { Modal } from "../ui/modal";
 import { Button } from "../ui/button";
+import useIsMounted from "@/hooks/useIsMounted";
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -12,11 +13,7 @@ interface AlertModalProps {
 }
 
 export const AlertModal: FC<AlertModalProps> = ({ isLoading, isOpen, onClose, onConfirm }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    if (!isMounted) setIsMounted(true);
-  }, [isMounted]);
+  const isMounted = useIsMounted();
 
   if (!isMounted) return null;
 

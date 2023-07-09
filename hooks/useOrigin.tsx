@@ -1,14 +1,9 @@
-import { useEffect, useState } from "react";
-import { create } from "zustand";
+import useIsMounted from "./useIsMounted";
 
 export const useOrigin = () => {
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useIsMounted();
 
   const origin = typeof window !== "undefined" && window.location.origin ? window.location.origin : "";
-
-  useEffect(() => {
-    if (!isMounted) setIsMounted(true);
-  }, [isMounted]);
 
   if (!isMounted) return "";
   return origin;
