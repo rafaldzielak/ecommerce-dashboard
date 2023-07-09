@@ -34,12 +34,12 @@ export const SettingsForm: FC<SettingsFormProps> = ({ initialData }) => {
 
   const params = useParams();
   const router = useRouter();
+  const origin = useOrigin();
+
   const form = useForm<SettingsFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
   });
-
-  const origin = useOrigin();
 
   const onSubmit = async (data: SettingsFormValues) => {
     try {
