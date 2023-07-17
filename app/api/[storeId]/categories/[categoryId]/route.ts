@@ -14,7 +14,10 @@ export async function GET(req: Request, { params }: Params) {
   try {
     if (!params.categoryId) return new NextResponse("Category id is required!", { status: 422 });
 
-    const category = await prismadb.category.findUnique({ where: { id: params.categoryId } });
+    const category = await prismadb.category.findUnique({
+      where: { id: params.categoryId },
+      include: { billboard: true },
+    });
     return NextResponse.json(category);
   } catch (error) {
     console.log("[CATEGORY_ID_GET]", error);
